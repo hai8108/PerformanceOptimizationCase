@@ -22,9 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <Button
-        android:visibility="gone"
-        android:id="@+id/btn_string_merge_string_builder"
-        android:text="@string/string_merge_string_builder"
+        android:id="@+id/btn_hprof_viewer_and_analyzer"
+        android:text="@string/hprof_viewer_and_analyzer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </LinearLayout>

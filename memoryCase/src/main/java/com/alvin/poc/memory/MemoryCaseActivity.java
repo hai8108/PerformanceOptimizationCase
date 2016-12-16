@@ -1,10 +1,15 @@
 package com.alvin.poc.memory;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 
 import com.alvin.androidlib.CaseBaseActivity;
 import com.alvin.androidlib.LogX;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MemoryCaseActivity extends CaseBaseActivity {
 
@@ -19,13 +24,15 @@ public class MemoryCaseActivity extends CaseBaseActivity {
 
             }
         });
-        findViewById(R.id.btn_string_merge_string_builder).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_hprof_viewer_and_analyzer).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new StringBuilderThread().start();
+                hprofViewerAndAnalyzer();
             }
         });
     }
+
+
 
     private void allocationTrackingCase() {
         new StringAddThread().start();
@@ -47,7 +54,33 @@ public class MemoryCaseActivity extends CaseBaseActivity {
         }
     }
 
-    class StringBuilderThread extends Thread {
+    class Info{
+        public Bitmap bitmap;
+
+        public Info() {
+        }
+    }
+    private List<Info> infos=new ArrayList<>();
+    private void hprofViewerAndAnalyzer() {
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                synchronized (MemoryCaseActivity.class) {
+                    int size = 1;
+                    Info info=new Info();
+                    info.bitmap=BitmapFactory.decodeResource(MemoryCaseActivity.this.getResources(),R.drawable.tv);
+                    for (int i = 0; i < size; i++) {
+                        infos.add(info);
+                    }
+                }
+            }
+        }.start();
+
+    }
+
+
+    class StringAllocThread extends Thread {
         @Override
         public void run() {
             String result = "";

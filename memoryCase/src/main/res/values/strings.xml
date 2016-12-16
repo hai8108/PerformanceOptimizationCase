@@ -3,4 +3,5 @@
     <string name="string_merge_add">使用运算符"＋",字符串合并</string>
     <string name="string_merge_string_builder">使用StringBuilder,字符串合并</string>
     <string name="allocation_tracking_case">Allocation Tracking Case </string>
+    <string name="hprof_viewer_and_analyzer">HPROF Viewer and Analyzer Case</string>
 </resources>
