@@ -26,4 +26,9 @@
         android:text="@string/hprof_viewer_and_analyzer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btn_leakcanary_case"
+        android:text="@string/leakcanary_case"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

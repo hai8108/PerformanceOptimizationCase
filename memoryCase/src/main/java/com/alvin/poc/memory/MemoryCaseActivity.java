@@ -1,5 +1,6 @@
 package com.alvin.poc.memory;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -30,8 +31,14 @@ public class MemoryCaseActivity extends CaseBaseActivity {
                 hprofViewerAndAnalyzer();
             }
         });
-    }
+        findViewById(R.id.btn_leakcanary_case).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                leakCanaryCase();
+            }
+        });
 
+    }
 
 
     private void allocationTrackingCase() {
@@ -79,19 +86,9 @@ public class MemoryCaseActivity extends CaseBaseActivity {
 
     }
 
+    private void leakCanaryCase() {
+        startActivity(new Intent(MemoryCaseActivity.this,LeakCanarySecondActivity.class));
 
-    class StringAllocThread extends Thread {
-        @Override
-        public void run() {
-            String result = "";
-            StringBuilder sb = new StringBuilder();
-            int size = MERGE_SIZE;
-            for (int i = 0; i < size; i++) {
-                sb.append("This is a test\n");
-            }
-            result = String.valueOf(sb);
-            LogX.d(TAG, result);
-            postToast(getClass().getSimpleName() + "end merge ");
-        }
     }
+
 }
