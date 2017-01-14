@@ -6,7 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/androidlib/androidlib.iml" filepath="$PROJECT_DIR$/androidlib/androidlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/memoryCase/memoryCase.iml" filepath="$PROJECT_DIR$/memoryCase/memoryCase.iml" />
       <module fileurl="file://$PROJECT_DIR$/reduceSizeCase/reducesizecase.iml" filepath="$PROJECT_DIR$/reduceSizeCase/reducesizecase.iml" />
-      <module fileurl="file://$PROJECT_DIR$/unusedresourcescleanlib/unusedresourcescleanlib.iml" filepath="$PROJECT_DIR$/unusedresourcescleanlib/unusedresourcescleanlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/unusedResourcesCleanTool/unusedResourcesCleanTool.iml" filepath="$PROJECT_DIR$/unusedResourcesCleanTool/unusedResourcesCleanTool.iml" />
     </modules>
   </component>
 </project>

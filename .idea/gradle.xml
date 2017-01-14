@@ -11,7 +11,7 @@
             <option value="$PROJECT_DIR$/androidlib" />
             <option value="$PROJECT_DIR$/memoryCase" />
             <option value="$PROJECT_DIR$/reduceSizeCase" />
-            <option value="$PROJECT_DIR$/unusedresourcescleanlib" />
+            <option value="$PROJECT_DIR$/unusedResourcesCleanTool" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
