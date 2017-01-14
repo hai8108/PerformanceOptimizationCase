@@ -13,7 +13,7 @@ public class UnusedResourcesClean {
 
     /**
      * key: resourceType
-     * value:
+     * value: resource file，or resource key name
      */
     static HashMap<String,Set<String>> resMap=new HashMap<>();
 
@@ -46,38 +46,32 @@ public class UnusedResourcesClean {
     }
 
 
-
+    /**
+     * split  The resource 'R.drawable.btn_bg_top_normal' appears to be unused
+     * lint result --> map
+     * @param resultFilePath
+     */
     private static void initUnUsedMap(String resultFilePath) {
+
+        HashMap<String,Set<String>> resMap=new HashMap<>();
 
         try {
             BufferedReader bf = new BufferedReader(new FileReader(resultFilePath));
-
-            int count = 0;
-
-            String line = "";//* The resource 'R.drawable.btn_bg_top_normal' appears to be unused
-
+            String line = "";
             while ((line = bf.readLine()) != null) { //
-
                 if (line.contains("appears to be unused")) {
-
                     String resKey= line.split("'")[1];//R.drawable.btn_bg_top_normal
-
                     System.out.println(resKey);
                     String resType=resKey.split("\\.")[1];
-                    String resId=resKey.split("\\.")[2];
+                    String resName=resKey.split("\\.")[2];
 
-
-                    System.out.println(resType+" , "+resId);
+                    System.out.println(resType+" , "+resName);
                     if (resMap.get(resType)==null){
-
                         resMap.put(resType,new HashSet<String>());
                     }
-
                     Set<String> ids=resMap.get(resType);
-                    ids.add(resId);
-
+                    ids.add(resName);
                 }
-
             }
 
         } catch (Exception e) {
@@ -89,13 +83,11 @@ public class UnusedResourcesClean {
     private static void printUnUsedMap() {
 
         for (Map.Entry<String, Set<String>> entry : resMap.entrySet()) {
-
             System.out.println("------------------"+entry.getKey()+"------------------");
             for (String s : entry.getValue()) {
                 System.out.println(s);
             }
             System.out.println(" ");
-
         }
 
     }
