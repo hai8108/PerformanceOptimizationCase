@@ -130,8 +130,6 @@ public class UnusedResourcesClean {
             if (!file.isDirectory()) {
                 continue;
             }
-
-
             if (file.getName().contains("value")) {
                 for (File file1 : file.listFiles()) {
                     for (Map.Entry<String, Boolean> entry : deletionLineMap.entrySet()) {
@@ -146,7 +144,8 @@ public class UnusedResourcesClean {
                 for (Map.Entry<String, Boolean> entry : deletionFileMap.entrySet()) {
 
                     if (file.getName().contains(entry.getKey()) && entry.getValue()) {
-                        deleteResFile(entry.getKey(), file);
+                        Set<String> resSet = resMap.get(entry.getKey());
+                        deleteResFile(resSet, file);
                     }
                 }
             }
@@ -156,16 +155,14 @@ public class UnusedResourcesClean {
     /**
      * 从指定资源目录中,删除指定类型的文件
      *
-     * @param resourceType
+     * @param resourceFiles
      * @param resDir       drawable layout ...
      */
-    private static void deleteResFile(String resourceType, File resDir) {
+    private static void deleteResFile(Set<String> resourceFiles, File resDir) {
 
         try {
-            Set<String> resSet = resMap.get(resourceType);
-
             for (File file1 : resDir.listFiles()) {
-                if (resSet.contains(file1.getName().split("\\.")[0])) {
+                if (resourceFiles.contains(file1.getName().split("\\.")[0])) {
                     file1.delete();
                 }
             }
