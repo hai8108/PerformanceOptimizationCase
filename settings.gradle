@@ -1,1 +1,1 @@
-include ':memoryCase', ':androidlib'
+include ':memoryCase', ':androidlib', ':reduceSizeCase', ':unusedresourcescleanlib'
