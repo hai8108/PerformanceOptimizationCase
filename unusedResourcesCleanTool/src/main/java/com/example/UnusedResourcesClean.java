@@ -14,11 +14,7 @@ import java.util.Set;
 public class UnusedResourcesClean {
 
 
-    /**
-     * key: resourceType
-     * value: resource file，or resource key name
-     */
-    static HashMap<String, Set<String>> resMap = new HashMap<>();
+
 
     static String Type_drawable = "drawable";
     static String Type_layout = "layout";
@@ -37,8 +33,20 @@ public class UnusedResourcesClean {
     private static boolean cleanDimen = true;
 
 
+    /**
+     * project res dir
+     */
     static String sourceProjectResDir = "/Users/alvin/Documents/workproject/PerformanceOptimizationCase/reduceSizeCase/src/main/res";
+
+    /**
+     * lint check result file path
+     */
     static String lintResultFilePath = "unusedResourcesCleanTool/unusedLint";
+    /**
+     * key: resourceType
+     * value: resource file，or resource key name
+     */
+    static HashMap<String, Set<String>> resMap = new HashMap<>();
 
 
     public static void main(String[] args) {
@@ -49,7 +57,7 @@ public class UnusedResourcesClean {
                 return;
             }
             printUnUsedMap();
-            clean(sourceProjectResDir);
+            clean(sourceProjectResDir,resMap);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -106,7 +114,13 @@ public class UnusedResourcesClean {
 
     }
 
-    private static void clean(String sourceProjectResDir) {
+    /**
+     *
+     * @param sourceProjectResDir  项目资源目录
+     * @param resMap 根据Type分类的unusedResource
+     *               例如 key: string     value: {rateuslib_cancel,unnecessary_cancel}
+     */
+    private static void clean(String sourceProjectResDir,HashMap<String, Set<String>> resMap) {
 
         Map<String, Boolean> deletionFileMap = new HashMap<>();
         deletionFileMap.put(Type_drawable, cleanDrawable);
@@ -156,7 +170,7 @@ public class UnusedResourcesClean {
      * 从指定资源目录中,删除指定类型的文件
      *
      * @param resourceFiles
-     * @param resDir       drawable layout ...
+     * @param resDir       drawable/ or layout/ ...
      */
     private static void deleteResFile(Set<String> resourceFiles, File resDir) {
 
@@ -169,10 +183,13 @@ public class UnusedResourcesClean {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
+    /**
+     * @param sourceFile  需要删除行的文件
+     * @param unusedSourceKeys 需要删除的行的关键词集合
+     * @param xmlTypeKey  "<string name" or "<dimen name=" or "<color name="
+     */
     public static void resetXml(File sourceFile, Set<String> unusedSourceKeys, String xmlTypeKey) {
         BufferedWriter bw = null;
         try {
@@ -187,7 +204,6 @@ public class UnusedResourcesClean {
             String line = "";// <string name="app_name">App Backup &amp; Restore</string>
 
             while ((line = bf.readLine()) != null) {
-
                 if (line.contains(xmlTypeKey) && unusedSourceKeys.contains(line.split("\"")[1])) {
                     continue;
                 }
