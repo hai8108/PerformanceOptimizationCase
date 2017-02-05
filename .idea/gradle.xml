@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/androidlib" />
+            <option value="$PROJECT_DIR$/launchtimecase" />
             <option value="$PROJECT_DIR$/memoryCase" />
             <option value="$PROJECT_DIR$/reduceSizeCase" />
             <option value="$PROJECT_DIR$/unusedResourcesCleanTool" />
